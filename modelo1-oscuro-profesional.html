@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestoría MR — Modelo 1: Oscuro & Profesional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0A1628;
+      --navy-mid: #112240;
+      --navy-light: #1A3A6B;
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --white: #FFFFFF;
+      --off-white: #F0EDE8;
+      --gray: #8892A4;
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--navy); color: var(--white); line-height: 1.6; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      padding: 1.2rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .nav-logo { font-family: var(--font-serif); font-size: 1.4rem; color: var(--gold); letter-spacing: 0.05em; }
+    .nav-logo span { color: var(--white); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 8rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0A1628 0%, #0D1E3D 50%, #0A1628 100%);
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 50%, rgba(26,58,107,0.4) 0%, transparent 60%);
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-content { position: relative; max-width: 780px; }
+    .hero-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--white);
+    }
+    .hero-content h1 em { color: var(--gold); font-style: normal; }
+    .hero-content p {
+      font-size: 1.1rem; color: var(--gray); max-width: 560px; margin: 0 auto 2.5rem;
+      font-weight: 300;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--gold); color: var(--navy);
+      padding: 0.9rem 2.2rem; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; letter-spacing: 0.05em;
+      border: none; cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      position: relative;
+    }
+    .stat-num { font-family: var(--font-serif); font-size: 2rem; color: var(--gold); }
+    .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 0.2rem; }
+
+    /* ── SECCIONES ── */
+    section { padding: 6rem 5%; }
+    .section-tag {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: var(--font-serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-subtitle { color: var(--gray); font-size: 1rem; max-width: 520px; font-weight: 300; }
+
+    /* ── SOBRE MÍ ── */
+    #sobre {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto;
+    }
+    .sobre-img-wrap {
+      position: relative;
+    }
+    .sobre-img-placeholder {
+      background: var(--navy-light);
+      border: 1px solid rgba(201,168,76,0.25);
+      height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray); font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .sobre-img-placeholder::before {
+      content: '📷';
+      display: block; font-size: 2rem; margin-bottom: 0.8rem; text-align: center;
+    }
+    .sobre-img-placeholder span { display: block; text-align: center; }
+    .sobre-accent {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      width: 100px; height: 100px;
+      border: 2px solid var(--gold); z-index: -1;
+    }
+    .sobre-text .section-subtitle { max-width: 100%; margin-bottom: 1.5rem; }
+    .sobre-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); padding: 0.5rem 1rem; font-size: 0.8rem;
+      margin-bottom: 0.6rem; margin-right: 0.5rem;
+    }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: var(--navy); }
+    .servicios-header { text-align: center; margin-bottom: 3.5rem; }
+    .servicios-header .section-subtitle { margin: 0 auto; }
+    .servicios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      max-width: 1100px; margin: 0 auto;
+      background: rgba(201,168,76,0.2);
+    }
+    .servicio-card {
+      background: var(--navy-mid);
+      padding: 2rem 1.8rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .servicio-card:hover { background: #152847; }
+    .servicio-num { font-family: var(--font-serif); font-size: 3rem; color: rgba(201,168,76,0.2); line-height: 1; margin-bottom: 1rem; }
+    .servicio-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--white); }
+    .servicio-desc { font-size: 0.875rem; color: var(--gray); line-height: 1.7; }
+    .servicio-line { width: 2rem; height: 2px; background: var(--gold); margin-bottom: 1rem; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios {
+      background: var(--navy-mid);
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .testimonios-header { text-align: center; margin-bottom: 3.5rem; }
+    .testimonios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+    .testimonio-card {
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 2rem;
+      position: relative;
+    }
+    .testimonio-quote {
+      font-family: var(--font-serif); font-size: 3.5rem; color: rgba(201,168,76,0.25);
+      line-height: 0.5; margin-bottom: 1rem;
+    }
+    .testimonio-text { color: var(--off-white); font-size: 0.9rem; line-height: 1.7; font-style: italic; margin-bottom: 1.2rem; }
+    .testimonio-name { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+    .testimonio-role { font-size: 0.75rem; color: var(--gray); }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--navy); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; max-width: 1000px; margin: 0 auto; }
+    .contacto-info .section-subtitle { margin-bottom: 2.5rem; }
+    .contacto-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+    .contacto-icon { font-size: 1.2rem; margin-top: 0.1rem; }
+    .contacto-item-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.2rem; }
+    .contacto-item-val { color: var(--white); font-size: 0.95rem; }
+    .contacto-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+    .form-group input, .form-group textarea, .form-group select {
+      background: var(--navy-mid); border: 1px solid rgba(201,168,76,0.2);
+      color: var(--white); padding: 0.75rem 1rem; font-family: var(--font-sans); font-size: 0.9rem;
+      outline: none; transition: border-color 0.3s;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--navy-mid); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: #25D366; color: #000;
+      padding: 1rem 2rem; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.02em;
+      transition: background 0.3s;
+      margin-bottom: 1rem; width: 100%; justify-content: center;
+    }
+    .wa-btn:hover { background: #1ebe5a; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #040d1a;
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 2rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: var(--font-serif); color: var(--gold); font-size: 1.1rem; }
+    .footer-text { color: var(--gray); font-size: 0.8rem; }
+    .footer-social a { color: var(--gray); text-decoration: none; font-size: 0.8rem; margin-left: 1rem; transition: color 0.3s; }
+    .footer-social a:hover { color: var(--gold); }
+
+    /* ── LABEL MODELO ── */
+    .modelo-label {
+      position: fixed; bottom: 1rem; left: 1rem; z-index: 999;
+      background: var(--gold); color: var(--navy);
+      padding: 0.4rem 0.9rem; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .servicios-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 1rem 4%; }
+      .nav-links { display: none; }
+      .nav-logo { font-size: 1.2rem; }
+
+      #hero { padding: 6rem 4% 9rem; }
+      #hero::after { display: none; }
+      .hero-content h1 { font-size: 2.2rem; }
+      .hero-content p { font-size: 0.95rem; }
+      .btn-primary { width: 100%; justify-content: center; padding: 1rem; }
+      .hero-stats { flex-wrap: wrap; gap: 1.2rem; padding-top: 1.5rem; }
+      .hero-stats > div { flex: 1 1 40%; text-align: center; }
+      .stat-num { font-size: 1.6rem; }
+
+      section { padding: 4rem 4%; }
+
+      .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .sobre-img-placeholder { height: 260px; }
+      .sobre-accent { display: none; }
+
+      .servicios-grid { grid-template-columns: 1fr; gap: 1px; }
+      .servicio-card { padding: 1.5rem; }
+
+      .testimonios-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .wa-btn { font-size: 0.9rem; padding: 1rem; }
+
+      footer { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1.5rem 4%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="modelo-label">Modelo 1 — Oscuro & Profesional</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Gestoría <span>MR</span></div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#testimonios">Testimonios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Mandataria del Automotor Matriculada</div>
+    <h1>Gestoría <em>integral</em> para el automotor</h1>
+    <p>Transferencias, informes registrales, cédulas y más — resuelto en el día, con atención hasta las 0:00 hs.</p>
+    <a href="https://wa.me/5491178964846?text=Hola%20Mariana%2C%20quisiera%20consultar%20sobre..." class="btn-primary">
+      💬 Consultá por WhatsApp
+    </a>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">+1000</div>
+        <div class="stat-label">Trámites realizados</div>
+      </div>
+      <div>
+        <div class="stat-num">0hs</div>
+        <div class="stat-label">Atención hasta medianoche</div>
+      </div>
+      <div>
+        <div class="stat-num">-30d</div>
+        <div class="stat-label">Legajos resueltos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="sobre-grid">
+    <div class="sobre-img-wrap">
+      <div class="sobre-img-placeholder"><span>Foto de Mariana Reyes</span></div>
+      <div class="sobre-accent"></div>
+    </div>
+    <div class="sobre-text">
+      <div class="section-tag">Sobre mí</div>
+      <h2 class="section-title">Mariana Reyes,<br/>Gestora Integral</h2>
+      <p class="section-subtitle">Soy mandataria del automotor matriculada, con años de experiencia en gestión integral, contable y previsional. Me capacito continuamente en el sistema jurídico del automotor para darte respuestas que otros no pueden.</p>
+      <p class="section-subtitle" style="margin-top:1rem;">A donde no hay caminos, yo los hago. No tengo legajos abiertos por más de un mes, y estoy disponible para consultas hasta medianoche.</p>
+      <div style="margin-top:1.5rem;">
+        <span class="sobre-badge">✓ Mandataria Matriculada</span>
+        <span class="sobre-badge">✓ Gestora Contable</span>
+        <span class="sobre-badge">✓ Gestora Previsional</span>
+        <span class="sobre-badge">✓ Informes en el día</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-header">
+    <div class="section-tag">Servicios</div>
+    <h2 class="section-title">Todo lo que necesitás,<br/>resuelto sin vueltas</h2>
+    <p class="section-subtitle">Gestión integral del automotor para particulares, concesionarias, talleres y agencias.</p>
+  </div>
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <div class="servicio-num">01</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Transferencias de Automotores y Motovehículos</div>
+      <p class="servicio-desc">Gestión completa del proceso de transferencia para autos y motos, tanto en CABA como en provincia. Rápido, seguro y sin complicaciones.</p>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">02</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Informes Registrales</div>
+      <p class="servicio-desc">Informes de dominio, estado de patentes e infracciones de tránsito. Resultados en el día para que no pierdas tiempo.</p>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">03</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Cédulas Verde y Azul</div>
+      <p class="servicio-desc">Emisión y duplicado de cédula verde (titular) y cédula azul (autorizado). Trámite ágil ante la DNRPA.</p>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">04</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Radicación — Altas y Bajas</div>
+      <p class="servicio-desc">Alta o baja de radicación vehicular en CABA o provincia. Asesoramiento completo según tu situación.</p>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">05</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Recupero de CAT / Título</div>
+      <p class="servicio-desc">Recupero del Certificado de Antecedentes del Transporte (CAT) o duplicado del título del automotor.</p>
+    </div>
+    <div class="servicio-card">
+      <div class="servicio-num">06</div>
+      <div class="servicio-line"></div>
+      <div class="servicio-title">Geolocalización del Titular</div>
+      <p class="servicio-desc">Localización del titular registral vehicular para gestiones legales, cobros o trámites que requieran identificar al propietario.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="testimonios">
+  <div class="testimonios-header">
+    <div class="section-tag">Testimonios</div>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-subtitle" style="margin:0 auto;">Agencias, talleres y particulares que confían en Gestoría MR.</p>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card">
+      <div class="testimonio-quote">"</div>
+      <p class="testimonio-text">Hace años que Mariana maneja todas las transferencias de nuestra agencia. Siempre responde rápido y resuelve hasta los casos más complicados.</p>
+      <div class="testimonio-name">Carlos M.</div>
+      <div class="testimonio-role">Agencia de autos, Buenos Aires</div>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-quote">"</div>
+      <p class="testimonio-text">Le mandé un mensaje a las 11 de la noche con una duda urgente y me respondió al toque. Ese nivel de atención es difícil de encontrar.</p>
+      <div class="testimonio-name">Laura G.</div>
+      <div class="testimonio-role">Compradora particular</div>
+    </div>
+    <div class="testimonio-card">
+      <div class="testimonio-quote">"</div>
+      <p class="testimonio-text">Necesitaba el informe para cerrar una venta y lo tuve el mismo día. Muy profesional y siempre disponible.</p>
+      <div class="testimonio-name">Rodrigo P.</div>
+      <div class="testimonio-role">Taller mecánico</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-grid">
+    <div class="contacto-info">
+      <div class="section-tag">Contacto</div>
+      <h2 class="section-title">¿Necesitás un trámite?<br/>Escribinos ahora</h2>
+      <p class="section-subtitle">Respondemos consultas hasta las 0:00 hs. Dinos qué necesitás y te ayudamos.</p>
+      <div style="margin-top:2rem;">
+        <div class="contacto-item">
+          <div class="contacto-icon">📱</div>
+          <div>
+            <div class="contacto-item-label">WhatsApp</div>
+            <div class="contacto-item-val">+54 9 11 7896-4846</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icon">✉️</div>
+          <div>
+            <div class="contacto-item-label">Email</div>
+            <div class="contacto-item-val">gestoriamrintegral@gmail.com</div>
+          </div>
+        </div>
+        <div class="contacto-item">
+          <div class="contacto-icon">📸</div>
+          <div>
+            <div class="contacto-item-label">Instagram</div>
+            <div class="contacto-item-val">@gestoria_mr_</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="https://wa.me/5491178964846?text=Hola%20Mariana%2C%20necesito%20hacer%20un%20tr%C3%A1mite%20de..." class="wa-btn">
+        💬 Contactar por WhatsApp
+      </a>
+      <div class="contacto-form">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono / Email</label>
+          <input type="text" placeholder="Cómo te contactamos" />
+        </div>
+        <div class="form-group">
+          <label>Trámite que necesitás</label>
+          <select>
+            <option value="">Seleccioná una opción…</option>
+            <option>Transferencia de automotor/moto</option>
+            <option>Informe registral</option>
+            <option>Cédula verde / azul</option>
+            <option>Radicación alta o baja</option>
+            <option>Recupero CAT / Título</option>
+            <option>Geolocalización de titular</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Consulta (opcional)</label>
+          <textarea placeholder="Contanos brevemente tu situación…"></textarea>
+        </div>
+        <button class="btn-primary" style="justify-content:center;">Enviar consulta →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Gestoría MR</div>
+  <div class="footer-text">© 2025 Gestoría MR · Mandataria del Automotor Matriculada</div>
+  <div class="footer-social">
+    <a href="https://instagram.com/gestoria_mr_" target="_blank">Instagram</a>
+    <a href="https://wa.me/5491178964846" target="_blank">WhatsApp</a>
+  </div>
+</footer>
+
+</body>
+</html>

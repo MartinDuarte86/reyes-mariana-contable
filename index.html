@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestoría MR — Selección de Diseños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0D1117;
+      color: #E6EDF3;
+      min-height: 100vh;
+      padding: 3rem 1.5rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .header h1 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .header p {
+      color: #8B949E;
+      font-size: 0.95rem;
+    }
+    .header .client-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.15);
+      color: #C9A84C;
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 0.3rem 1rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #161B22;
+      border: 1px solid #30363D;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      border-color: #58A6FF;
+      transform: translateY(-3px);
+    }
+    .card-preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-preview-1 { background: linear-gradient(135deg, #0A1628, #1A3A6B); }
+    .card-preview-2 { background: linear-gradient(135deg, #1A3A6B, #2A5298); }
+    .card-preview-3 { background: linear-gradient(135deg, #EDE9E2, #D4C5B0); }
+    .card-preview-label {
+      position: absolute;
+      bottom: 0.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .preview-1-label { color: rgba(201,168,76,0.8); }
+    .preview-2-label { color: rgba(255,255,255,0.6); }
+    .preview-3-label { color: rgba(184,115,51,0.8); }
+    .card-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .card-num { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: #8B949E; margin-bottom: 0.5rem; }
+    .card-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card-desc { font-size: 0.85rem; color: #8B949E; line-height: 1.6; flex: 1; margin-bottom: 1.2rem; }
+    .card-palette { display: flex; gap: 0.4rem; margin-bottom: 1.2rem; }
+    .swatch { width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+    .card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #21262D;
+      border: 1px solid #30363D;
+      color: #C9D1D9;
+      padding: 0.7rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .card-btn:hover { background: #30363D; color: #F0F6FC; }
+    .footer-note {
+      text-align: center;
+      margin-top: 3rem;
+      color: #484F58;
+      font-size: 0.8rem;
+    }
+    @media (max-width: 480px) {
+      body { padding: 2rem 1rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="client-tag">Gestoría MR — Propuesta de Diseño</div>
+    <h1>Elegí tu diseño favorito</h1>
+    <p>3 modelos de landing page para Gestoría MR. Abrí cada uno para verlo completo.</p>
+  </div>
+
+  <div class="grid">
+    <!-- Modelo 1 -->
+    <a class="card" href="modelo1-oscuro-profesional.html">
+      <div class="card-preview card-preview-1">
+        <span>🌙</span>
+        <div class="card-preview-label preview-1-label">Navy · Dorado</div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Modelo 01</div>
+        <div class="card-title">Oscuro & Profesional</div>
+        <p class="card-desc">Fondo navy oscuro con acentos dorados. Elegante y corporativo. Transmite autoridad y seriedad.</p>
+        <div class="card-palette">
+          <div class="swatch" style="background:#0A1628;"></div>
+          <div class="swatch" style="background:#1A3A6B;"></div>
+          <div class="swatch" style="background:#C9A84C;"></div>
+          <div class="swatch" style="background:#FFFFFF;"></div>
+        </div>
+        <span class="card-btn">Ver diseño →</span>
+      </div>
+    </a>
+
+    <!-- Modelo 2 -->
+    <a class="card" href="modelo2-moderno-limpio.html">
+      <div class="card-preview card-preview-2">
+        <span>☀️</span>
+        <div class="card-preview-label preview-2-label">Azul · Naranja</div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Modelo 02</div>
+        <div class="card-title">Moderno & Limpio</div>
+        <p class="card-desc">Fondo blanco con azul oscuro y naranja. Dinámico y confiable, ideal para captar clientes nuevos.</p>
+        <div class="card-palette">
+          <div class="swatch" style="background:#FFFFFF; border-color:#ccc;"></div>
+          <div class="swatch" style="background:#1A3A6B;"></div>
+          <div class="swatch" style="background:#E85D26;"></div>
+          <div class="swatch" style="background:#F4F6FB;"></div>
+        </div>
+        <span class="card-btn">Ver diseño →</span>
+      </div>
+    </a>
+
+    <!-- Modelo 3 -->
+    <a class="card" href="modelo3-elegante-minimalista.html">
+      <div class="card-preview card-preview-3">
+        <span style="filter:invert(1);">🏛️</span>
+        <div class="card-preview-label preview-3-label">Crema · Cobre</div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Modelo 03</div>
+        <div class="card-title">Elegante & Minimalista</div>
+        <p class="card-desc">Fondo crema con tipografía serif y detalles cobre. Sofisticado y diferente, estilo estudio premium.</p>
+        <div class="card-palette">
+          <div class="swatch" style="background:#F8F5F0; border-color:#ccc;"></div>
+          <div class="swatch" style="background:#1C1C1C;"></div>
+          <div class="swatch" style="background:#B87333;"></div>
+          <div class="swatch" style="background:#EDE9E2;"></div>
+        </div>
+        <span class="card-btn">Ver diseño →</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer-note">
+    Gestoría MR · Mandataria del Automotor Matriculada · martynduarte@gmail.com
+  </div>
+</body>
+</html>
